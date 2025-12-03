@@ -1,10 +1,15 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
+const connectDB = require('./conexionbd');
 
+const app = express();
 app.use(express.json());
 
+// Conectar a MongoDB Atlas
+connectDB();
+
 app.get('/', (req, res) => {
-  res.send('API funcionando');
+  res.send('API funcionando con MongoDB Atlas');
 });
 
 const PORT = 3000;
