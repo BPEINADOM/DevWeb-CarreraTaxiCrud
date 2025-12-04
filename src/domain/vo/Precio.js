@@ -1,13 +1,14 @@
 class Precio {
 
-  constructor(valor) {
-    if (typeof valor !== "number" || valor < 0) {
-      throw new Error("El precio debe ser un número mayor o igual que 0.");
+    constructor(valor) {
+        if (valor < 0) {
+            throw new Error("El precio no puede ser negativo");
+        }
+        this.valor = valor;
+        Object.freeze(this);
     }
-
-    this.valor = valor;
-  }
-  
+    
 }
 
 module.exports = Precio;
+
