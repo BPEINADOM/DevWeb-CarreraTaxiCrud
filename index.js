@@ -23,4 +23,7 @@ app.use('/usuarios', usuarioRoutes);
 const taxiRoutes = require('./src/infraestructure/routes/taxiRoutes');
 app.use('/taxis', taxiRoutes);
 
+const taxistaRoutes = require('./src/infraestructure/routes/taxistaRoutes');
+app.use('/taxistas', taxistaRoutes);
+
 
