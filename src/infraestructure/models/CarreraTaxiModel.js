@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 
 const CarreraTaxiSchema = new mongoose.Schema({
-    idCarrera: { type: String, required: true, unique: true },
+    idCarrera: { type: String, required: true, default: uuidv4 },
 
     cliente: { type: Object, required: true },
     taxi: { type: Object, required: true },

@@ -11,12 +11,12 @@ class CarreraTaxi {
     cliente,
     taxi,
     taxista,
-    kilometros = null, // VO Kilometros or null
+    kilometros = null, 
     barrioInicio = null,
     barrioLlegada = null,
     cantidadPasajeros = null,
-    precio = null, // VO Precio or null
-    duracionMinutos = null // VO DuracionMinutos or null
+    precio = null, 
+    duracionMinutos = null 
   }) {
     this.idCarrera = idCarrera;
     this.cliente = cliente;
