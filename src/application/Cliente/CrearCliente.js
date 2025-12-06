@@ -1,15 +1,15 @@
-class CrearCliente {
+const { v4: uuid } = require('uuid');
+const Cliente = require('../../domain/entities/Cliente');
 
+class CrearCliente {
     constructor(repo) {
         this.repo = repo;
     }
 
     async ejecutar(data) {
-        if (!data.nombre) throw new Error("El nombre es obligatorio");
-
-        return await this.repo.crear(data);
+        const cliente = new Cliente(uuid(), data.nombre);
+        return await this.repo.crear(cliente);
     }
-    
 }
 
 module.exports = CrearCliente;
