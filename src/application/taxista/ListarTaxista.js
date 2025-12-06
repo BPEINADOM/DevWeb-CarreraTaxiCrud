@@ -1,13 +1,14 @@
 class ListarTaxistas {
 
-    constructor(repo) {
-        this.repo = repo;
+    constructor(TaxistaRepository) {
+        this.TaxistaRepository = TaxistaRepository;
     }
 
+
     async ejecutar() {
-        return await this.repo.listar();
+        return await this.TaxistaRepository.listar();
     }
-    
+
 }
 
 module.exports = ListarTaxistas;

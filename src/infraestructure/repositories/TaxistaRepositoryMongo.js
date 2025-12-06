@@ -1,21 +1,31 @@
 const TaxistaModel = require('../models/TaxistaModel');
-const Taxista = require('../../domain/entities/Taxista');
-const { v4: uuidv4 } = require('uuid');
 
 class TaxistaRepositoryMongo {
-    async crear(data) {
-        
-        // Asegurar que idTaxista exista
-        if (!data.idTaxista) data.idTaxista = uuidv4();
-
-        const taxista = new Taxista(data);
-        const model = new TaxistaModel(taxista);
-        return await model.save();
+    async crear(taxista) {
+        const nuevo = new TaxistaModel(taxista);
+        return await nuevo.save();
     }
 
     async listar() {
         return await TaxistaModel.find();
     }
+
+    async buscarPorId(idTaxista) {
+        return await TaxistaModel.findOne({ idTaxista });
+    }
+
+    async actualizar(idTaxista, data) {
+        return await TaxistaModel.findOneAndUpdate(
+            { idTaxista },
+            data,
+            { new: true }
+        );
+    }
+
+    async eliminar(idTaxista) {
+        return await TaxistaModel.findOneAndDelete({ idTaxista });
+    }
 }
+
 
 module.exports = TaxistaRepositoryMongo;

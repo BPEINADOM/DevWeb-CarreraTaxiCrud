@@ -1,16 +1,20 @@
-class CrearTaxista {
+const { v4: uuid } = require('uuid');
+const Taxista = require('../../domain/entities/Taxista');
 
-    constructor(repo) {
-        this.repo = repo;
+class CrearTaxista {
+    constructor(TaxistaRepository) {
+        this.TaxistaRepository = TaxistaRepository;
     }
 
     async ejecutar(data) {
-        if (!data.nombre) throw new Error("El nombre es obligatorio");
-        if (!data.licencia) throw new Error("La licencia es obligatoria");
+        const taxista = new Taxista({
+            idTaxista: uuid(),
+            nombre: data.nombre,
+            licencia: data.licencia
+        });
 
-        return await this.repo.crear(data);
+        return await this.TaxistaRepository.crear(taxista);
     }
-    
 }
 
 module.exports = CrearTaxista;
