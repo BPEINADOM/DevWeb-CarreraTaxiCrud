@@ -1,10 +1,16 @@
 const ClienteRepositoryMongo = require('../repositories/ClienteRepositoryMongo');
 const CrearCliente = require('../../application/Cliente/CrearCliente');
 const ListarClientes = require('../../application/Cliente/ListarCliente');
+const BuscarClientePorId = require('../../application/Cliente/BuscarClientePorId');
+const ActualizarCliente = require('../../application/Cliente/ActualizarCliente');
+const EliminarCliente = require('../../application/Cliente/EliminarCliente');
 
 const repo = new ClienteRepositoryMongo();
 const crearCU = new CrearCliente(repo);
 const listarCU = new ListarClientes(repo);
+const buscarCU = new BuscarClientePorId(repo);
+const actualizarCU = new ActualizarCliente(repo);
+const eliminarCU = new EliminarCliente(repo);
 
 module.exports = {
     crear: async (req, res) => {
@@ -19,5 +25,25 @@ module.exports = {
     listar: async (req, res) => {
         const clientes = await listarCU.ejecutar();
         res.json(clientes);
+    },
+
+    buscar: async (req, res) => {
+        const cliente = await buscarCU.ejecutar(req.params.id);
+
+        if (!cliente) {
+            return res.status(404).json({ error: "Cliente no encontrado" });
+        }
+
+        res.json(cliente);
+    },
+
+    actualizar: async (req, res) => {
+        const cliente = await actualizarCU.ejecutar(req.params.id, req.body);
+        res.json(cliente);
+    },
+
+    eliminar: async (req, res) => {
+        await eliminarCU.ejecutar(req.params.id);
+        res.json({ mensaje: "Cliente eliminado correctamente" });
     }
 };
