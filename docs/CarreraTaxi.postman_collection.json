@@ -1,0 +1,185 @@
+{
+  "info": {
+    "name": "CarreraTaxi CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "USUARIOS",
+      "item": [
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nombre\": \"Juan Perez\",\n    \"email\": \"juan@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Buscar usuario por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/usuarios/{{idUsuario}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "usuarios", "{{idUsuario}}"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"nombre\": \"Nuevo Nombre\" \n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/usuarios/{{idUsuario}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "usuarios", "{{idUsuario}}"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/usuarios/{{idUsuario}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "usuarios", "{{idUsuario}}"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "CLIENTES",
+      "item": [
+        {
+          "name": "Crear cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Ramirez\",\n  \"telefono\": \"3000000000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/clientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "clientes"]
+            }
+          }
+        },
+        {
+          "name": "Listar clientes",
+          "request": { "method": "GET", "url": "http://localhost:3000/api/clientes" }
+        }
+      ]
+    },
+
+    {
+      "name": "TAXIS",
+      "item": [
+        {
+          "name": "Crear taxi",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"placa\": \"ABC123\",\n  \"modelo\": \"2015\"\n}"
+            },
+            "url": "http://localhost:3000/api/taxis"
+          }
+        },
+        { "name": "Listar taxis", "request": { "method": "GET", "url": "http://localhost:3000/api/taxis" } }
+      ]
+    },
+
+    {
+      "name": "TAXISTAS",
+      "item": [
+        {
+          "name": "Crear taxista",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"nombre\": \"Pedro Lopez\",\n \"licencia\": \"XYZ987\"\n}"
+            },
+            "url": "http://localhost:3000/api/taxistas"
+          }
+        },
+        { "name": "Listar taxistas", "request": { "method": "GET", "url": "http://localhost:3000/api/taxistas" } }
+      ]
+    },
+
+    {
+      "name": "CARRERAS TAXI",
+      "item": [
+        {
+          "name": "Crear carrera",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": \"{{clienteId}}\",\n  \"taxiPlaca\": \"ABC123\",\n  \"taxistaId\": \"{{taxistaId}}\",\n  \"origen\": \"Calle 10\",\n  \"destino\": \"Carrera 80\",\n  \"distancia\": 12\n}"
+            },
+            "url": "http://localhost:3000/api/carreras"
+          }
+        },
+        { "name": "Listar carreras", "request": { "method": "GET", "url": "http://localhost:3000/api/carreras" } }
+      ]
+    }
+  ]
+}
