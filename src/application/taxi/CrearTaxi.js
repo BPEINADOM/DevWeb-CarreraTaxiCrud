@@ -1,12 +1,18 @@
-class CrearTaxi {
+const Taxi = require('../../domain/entities/Taxi');
 
+class CrearTaxi {
     constructor(taxiRepository) {
         this.taxiRepository = taxiRepository;
     }
 
     async ejecutar(data) {
-        if (!data.placa) throw new Error("La placa es obligatoria");
-        return await this.taxiRepository.crear(data);
+        const taxi = new Taxi(
+            data.placa,
+            data.marca,
+            data.modelo
+        );
+
+        return await this.taxiRepository.crear(taxi);
     }
 }
 

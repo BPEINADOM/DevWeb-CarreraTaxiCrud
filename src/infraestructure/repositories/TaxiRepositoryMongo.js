@@ -1,18 +1,31 @@
 const TaxiModel = require('../models/TaxiModel');
-const Taxi = require('../../domain/entities/Taxi');
 
 class TaxiRepositoryMongo {
 
-    async crear(data) {
-        const taxi = new Taxi(data);
-        const model = new TaxiModel(taxi);
-        return await model.save();
+    async crear(taxi) {
+        const nuevo = new TaxiModel(taxi);
+        return await nuevo.save();
     }
 
     async listar() {
         return await TaxiModel.find();
     }
-    
+
+    async buscarPorPlaca(placa) {
+        return await TaxiModel.findOne({ placa });
+    }
+
+    async actualizar(placa, data) {
+        return await TaxiModel.findOneAndUpdate(
+            { placa },
+            data,
+            { new: true }
+        );
+    }
+
+    async eliminar(placa) {
+        return await TaxiModel.findOneAndDelete({ placa });
+    }
 }
 
 module.exports = TaxiRepositoryMongo;
