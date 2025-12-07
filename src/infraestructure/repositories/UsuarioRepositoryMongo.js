@@ -1,16 +1,10 @@
 const UsuarioModel = require('../models/UsuarioModel');
-const Usuario = require('../../domain/entities/usuario');
 
 class UsuarioRepositoryMongo {
 
-    async crear({ nombre, clave, rol }) {
-        const usuario = await UsuarioModel.create({ nombre, clave, rol });
-        return new Usuario({
-            id: usuario._id.toString(),
-            nombre: usuario.nombre,
-            clave: usuario.clave,
-            rol: usuario.rol
-        });
+    async crear(usuario) {
+            const nuevo = new UsuarioModel(usuario);
+            return await nuevo.save();
     }
 
     async listar() {

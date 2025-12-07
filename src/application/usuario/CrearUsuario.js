@@ -1,3 +1,5 @@
+const { v4: uuid } = require('uuid');
+const Usuario = require('../../domain/entities/Usuario');
 class CrearUsuario {
     
     constructor(usuarioRepository) {
@@ -5,7 +7,8 @@ class CrearUsuario {
     }
 
     async ejecutar(data) {
-        return await this.usuarioRepository.crear(data);
+        const usuario = new Usuario(uuid(), data.nombre);
+        return await this.repo.crear(usuario);
     }
 }
 
