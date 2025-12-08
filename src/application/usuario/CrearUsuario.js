@@ -7,8 +7,15 @@ class CrearUsuario {
     }
 
     async ejecutar(data) {
-        const usuario = new Usuario(uuid(), data.nombre);
-        return await this.repo.crear(usuario);
+        // Crear el objeto completo que necesita la entidad
+        const usuario = new Usuario({
+            id: uuid(),
+            nombre: data.nombre,
+            clave: data.clave,
+            rol: data.rol
+        });
+
+        return await this.usuarioRepository.crear(usuario);
     }
 }
 

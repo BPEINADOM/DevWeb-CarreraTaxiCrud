@@ -7,7 +7,11 @@ class CrearCliente {
     }
 
     async ejecutar(data) {
-        const cliente = new Cliente(uuid(), data.nombre);
+        const cliente = new Cliente({
+            idCliente: uuid(),
+            nombre: data.nombre
+        });
+
         return await this.repo.crear(cliente);
     }
 }

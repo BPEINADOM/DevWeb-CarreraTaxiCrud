@@ -28,7 +28,7 @@ module.exports = {
     },
 
     buscar: async (req, res) => {
-        const cliente = await buscarCU.ejecutar(req.params.id);
+        const cliente = await buscarCU.ejecutar(req.params.idCliente);
 
         if (!cliente) {
             return res.status(404).json({ error: "Cliente no encontrado" });
@@ -38,12 +38,12 @@ module.exports = {
     },
 
     actualizar: async (req, res) => {
-        const cliente = await actualizarCU.ejecutar(req.params.id, req.body);
+        const cliente = await actualizarCU.ejecutar(req.params.idCliente, req.body);
         res.json(cliente);
     },
 
     eliminar: async (req, res) => {
-        await eliminarCU.ejecutar(req.params.id);
+        await eliminarCU.ejecutar(req.params.idCliente);
         res.json({ mensaje: "Cliente eliminado correctamente" });
     }
 };
